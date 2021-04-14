@@ -1,15 +1,31 @@
 {
-  "name": "touchbar-web",
+  "name": "touchbar_web",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "hello.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron -- index.js",
+    "build": "MACOSX_DEPLOYMENT_TARGET=10.15 node-gyp build",
+    "build:dev": "MACOSX_DEPLOYMENT_TARGET=10.15 node-gyp build --debug",
+    "clean": "node-gyp clean",
+    "lint": "prettier --check '**/*.js'",
+    "format": "clang-format -i main.mm AppleLogin.m ApleLogin.h && prettier --write '**/*.js'",
+    "rebuild": "node-gyp rebuild",
+    "rebuild:dev": "node-gyp rebuild --debug",
+    "test": "./node_modules/.bin/mocha --reporter spec"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
+  "gypfile": true,
   "dependencies": {
     "electron": "^12.0.1"
+  },
+  "devDependencies": {
+    "bindings": "^1.5.0",
+    "clang-format": "^1.5.0",
+    "nan": "^2.14.2",
+    "node-addon-api": "^3.1.0",
+    "node-gyp": "^7.1.2"
   }
 }
